@@ -53,29 +53,21 @@ createTableElements(bigger, "allcities");
 
 //landAreaLess
 document.querySelector("#landAreaLess").addEventListener("click",()=>{
-const area=data.filter((Area)=>{
-return Area.landArea < 1000;
-});
+const area=data.filter(Area=>Area.landArea < 1000);
 //console.log(area);
 createTableElements(area, "allcities");
 });
 
 /// Does any city has population less than 100.000?
 document.querySelector("#isPopulationLess").addEventListener("click",()=>{
-const doesPopolation=data.some((populationLess)=>{
-  return populationLess.population < 100000;
-
-});
+const doesPopolation=data.some(populationLess=>populationLess.population < 100000);
 if(doesPopolation){alert("YES")}
 else{ alert("No")}
 //console.log(doesPopolation)
 });
 //Does every city has land area bigger than 100?
 document.querySelector("#isLandBigger").addEventListener("click",()=>{
-const isLandBigger=data.every((landBigger)=>{
-  return landBigger.landArea > 100;
-
-});
+const isLandBigger=data.every(landBigger=>landBigger.landArea > 100);
 if(isLandBigger){alert("YES")}
 else{ alert("No")}
 
@@ -83,25 +75,23 @@ else{ alert("No")}
 });
 
 //city select => #selectcity
-const dataName1 =data.map(cityName => cityName.name);
 
-dataName1.forEach((element)=>{
+const dataName1 =data.map(cityName => cityName.name);
 const selectCity=document.querySelector(".custom-select");
+dataName1.forEach((element)=>{
 const creatCities=document.createElement("option");
-creatCities.setAttribute("id","selectcity");
 creatCities.setAttribute("value",element);
   creatCities.textContent=element;
   selectCity.appendChild(creatCities);
 })
 
+
+
+
 //Select 
-document.querySelector(".custom-select").addEventListener("change",(event)=>{
+selectCity.addEventListener("change",(event)=>{
  
-const selectCities=data.filter((cities)=>{
-
-  return event.target.value === cities.name;
-
-})
+const selectCities=data.filter(cities=>event.target.value === cities.name);
 //console.log(selectCities)
   createTableElements(selectCities, "singlecity")
   
